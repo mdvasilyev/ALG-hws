@@ -1,0 +1,82 @@
+\section{Асимптотика}
+\begin{enumerate}
+  \item	
+	Эквивалентны ли следующие факты?
+	\begin{itemize}
+		\item $f = \Theta(g)$
+		\item $\exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C$
+	\end{itemize}
+
+  \item
+    Дайте ответ для двух случаев $\mathbb{N} \to \mathbb{N}$ и $\mathbb{N} \to \mathbb{R}_{>0}$:
+    \begin{enumerate}
+      \item
+        Если в определении $\O$ опустить условие про $N$ (т.е. оставить
+        просто $\forall n$), будет ли полученное определение эквивалентно
+        исходному?
+      \item
+        Тот же вопрос про $o$.
+    \end{enumerate}
+
+  \item
+    Продолжим отношение ``$\preceq$'' на функциях до отношения на классах эквивалентности по отношению эквивалентности ``$\sim$'', введённому на практике. Правда ли, что получится отношение \textit{линейного порядка} (то есть
+    $\forall f, g: (f \preceq g) \lor (g \preceq f)$)?
+
+  \item
+    Докажите, или приведите контрпример:
+    \begin{enumerate}
+      \item $g(n) = o(f(n)) \Rightarrow f(n) + g(n) = \Theta(f(n))$
+      \item $f(n) = \O(g(n)) \Leftrightarrow f(n) = o(g(n)) \lor f(n) = \Theta(g(n))$
+    \end{enumerate}
+
+  \item Заполните табличку и поясните (особенно строчки 4 и 7):
+    $$
+    \begin{array}{|cc|c|c|c|c|c|}
+      \hline
+      A & B & \O & o & \Theta & \omega & \Omega \\
+      \hline
+      n & n^2 & + & + & - & - & - \\
+      \log^k n & n^{\epsilon} & & & & & \\
+      n^k & c^n & & & & & \\
+      \sqrt{n} & n^{\sin n} & & & & & \\
+      2^n & 2^{n \slash 2} & & & & & \\
+      n^{\log m} & m^{\log n} & & & & & \\
+      \log (n!) & \log(n^n) & & & & & \\
+      \hline
+    \end{array}
+    $$
+    Здесь все буквы, кроме $n$, --- положительные константы.
+
+\subsection*{Дополнительные задачи}
+    
+    \item  
+    Считайте здесь, что функции здесь $\mathbb{N} \to \mathbb{N}$ и что $\forall n : f(n) > 1 \land g(n) > 1$.
+    \begin{enumerate}
+      \item $f(n) = \Omega(f(n \slash 2)$)?
+      \item $f(n) = \O(g(n)) \Rightarrow \log f(n) = \O(\log g(n))$?
+      \item $f(n) = \O(g(n)) \Rightarrow 2^{f(n)} = \O(2^{g(n)})$?
+      \item $f(n) = o(g(n)) \Rightarrow \log f(n) = o(\log g(n))$?
+      \item $f(n) = o(g(n)) \Rightarrow 2^{f(n)} = o(2^{g(n)})$?
+    \end{enumerate}
+    
+	\item
+	Упорядочите функции по скорости роста и обозначьте неравенства между соседями. 
+	Укажите, в каких неравенствах $f = o(g)$, а в каких $f = \Theta(g)$
+	$$
+	\begin{array}{cccccc}
+	\log(\log^* n) & 2^{log^* n} & (\sqrt{n})^{\log n} & n^2 & n! & (\log n)! \\
+	(3 \slash 2)^n & n^3 & \log^2 n & \log n! & 2^{2^n} & n^{1 \slash \log n} \\
+	\ln \ln n & \log^* n & n \cdot 2^n & n^{\log \log n} & \ln n & 1 \\
+	2^{\ln n} & (\log n)^{\log n} & e^n & 4^{\log n} & (n + 1)! & \sqrt{\log n} \\
+	\log^* \log n & 2^{\sqrt{2 \log n}} & n & 2^n & n \log n & 2^{2^{n + 1}}					
+	\end{array}
+	$$
+	Примечание: $\log^*(n) = \left\{
+	\begin{array}{ll}
+	0 & \texttt{ если } n \leq 1;\\
+	1 + \log^*(\log n) & \texttt{ иначе.}
+	\end{array}
+	\right.$
+\end{enumerate}
+
+\clearpage
