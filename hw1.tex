@@ -40,12 +40,29 @@
     \end{equation}
     То есть:
     \begin{equation}
-      f = \Theta(g) \Rightarrow \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C
+      f = \Theta(g) \Rightarrow \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C.
     \end{equation}
     \textit{В обратную сторону}: если
     \begin{equation}
-      \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C
+      \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C,
     \end{equation}
+    то, при $n \to \infty$, $f(n) \to C \cdot g(n)$, но
+    \begin{equation}
+      f(n) = \O(f(n)) = \O(C \cdot g(n)) = \O(g(n)).
+    \end{equation}
+    Также, из $\exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \dfrac{f(n)}{g(n)} = C$, можно сказать, что, при $n \to \infty$, $g(n) \to \dfrac{1}{C}f(n)$, но
+    \begin{equation}
+      g(n) = \O(g(n)) = \O\left(\dfrac{1}{C}f(n)\right) = \O(f(n)).
+    \end{equation}
+    Имеем, что
+    \begin{equation}
+      f(n) = \O(g(n)) \quad \text{и} \quad g(n) = \O(f(n)),
+    \end{equation}
+    из чего следует, что
+    \begin{equation}
+      f(n) = \Theta(g(n)).
+    \end{equation}
+    Получилось, что исходные утверждения эквивалентны.
   \end{proof}
 
   \item
