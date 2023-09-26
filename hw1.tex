@@ -120,7 +120,21 @@
       \begin{equation}
         \forall f, g: (f \preceq g) \land (g \preceq f).
       \end{equation}
-      Если бы мы оставили объединение, то мы бы получили положительный ответ (что $f \sim g$), даже если только одно из утверждений ($(f \preceq g)$ или $(g \preceq f)$) было бы верным, ну а это неверно.
+      Если бы мы оставили объединение, то мы бы получили положительный ответ (что $f \sim g$), даже если только одно из утверждений ($(f \preceq g)$ или $(g \preceq f)$) было бы верным, ну а это неправда.
+      
+      Пример:
+      \begin{equation}
+        f(n) = 1, \quad \text{а} \quad g(n) = n.
+      \end{equation}
+      Видно, что следующее утверждение верно:
+      \begin{equation}
+        (1 \preceq n) \lor (n \preceq 1),
+      \end{equation}
+      но утверждение
+      \begin{equation}
+        1 \sim n
+      \end{equation}
+      неверное.
     \end{proof}
 
   \item
