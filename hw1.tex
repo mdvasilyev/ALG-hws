@@ -197,8 +197,8 @@
       A & B & \O & o & \Theta & \omega & \Omega \\
       \hline
       n & n^2 & + & + & - & - & - \\
-      \log^k n & n^{\epsilon} & & & & & \\
-      n^k & c^n & & & & & \\
+      \log^k n & n^{\epsilon} & + & + & - & - & - \\
+      n^k & c^n & + & + & - & - & - \\
       \sqrt{n} & n^{\sin n} & & & & & \\
       2^n & 2^{n \slash 2} & & & & & \\
       n^{\log m} & m^{\log n} & & & & & \\
@@ -207,7 +207,29 @@
     \end{array}
     $$
     Здесь все буквы, кроме $n$, --- положительные константы.
-
+    \begin{proof}
+      Насколько я понял, тут подразумевается вот такое отношение $$A = rel(B).$$
+      Рассмотрим все строчки по порядку:
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{\log_{\alpha}^k n}{n^{\epsilon}}} = \lim\limits_{n \to \infty}{\dfrac{k\log_{\alpha}^{k-1} n}{n \cdot \ln \alpha \cdot \epsilon \cdot n^{\epsilon - 1}}} = \lim\limits_{n \to \infty}{\dfrac{k\log_{\alpha}^{k-1} n}{\ln \alpha \cdot \epsilon \cdot n^{\epsilon}}} = \ldots = \lim\limits_{n \to \infty}{\dfrac{C}{n^{\beta}}} = 0 \Rightarrow \\
+        \log^k n = \O(n^{\epsilon}) \quad \text{или} \quad \log^k n = o(n^{\epsilon})
+      \end{eqnarray}
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{n^k}{c^n}}
+      \end{eqnarray}
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{\sqrt{n}}{n^{\sin n}}}
+      \end{eqnarray}
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{2^n}{2^{n/2}}} = \lim\limits_{n \to \infty}{2^{n/2}} = \infty
+      \end{eqnarray}
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{n^{\log m}}{m^{\log n}}} = \lim\limits_{n \to \infty}{\dfrac{m^{\log n}}{m^{\log n}}} = 1
+      \end{eqnarray}
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{\log (n!)}{\log (n^n)}}
+      \end{eqnarray}
+    \end{proof}
 
 \end{enumerate}
 
