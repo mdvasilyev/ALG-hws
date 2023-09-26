@@ -8,6 +8,8 @@
 	\end{itemize}
 
   \begin{proof}
+    \textit{В одну сторону}:
+
     По определению из лекции:
     \begin{eqnarray}
       f(n) = \Theta(g(n)), \text{ если } f(n) = \O(g(n)) \text{ и } g(n) = \O(f(n)), \\
@@ -25,11 +27,24 @@
     \begin{equation}
       \begin{cases}
         \dfrac{f(n)}{g(n)} \leq C_1, \\ \qquad\qquad\qquad\qquad\qquad\Rightarrow\\
-        \dfrac{f(n)}{g(n)} \geq C_2,
+        \dfrac{f(n)}{g(n)} \geq C_2.
       \end{cases}
     \end{equation}
+    Следовательно,
+    \begin{equation}\label{eq:doubleIneq}
+      C_2 \leq \dfrac{f(n)}{g(n)} \leq C_1.
+    \end{equation}
+    Устремим $n$ к бесконечности. Из (\ref{eq:doubleIneq}) видно, что отношение функций стремится к некоторой константе $C_3$:
     \begin{equation}
-      C_2 \leq \dfrac{f(n)}{g(n)} \leq C_1,
+      C_2 \leq C_3 \leq C_1.
+    \end{equation}
+    То есть:
+    \begin{equation}
+      f = \Theta(g) \Rightarrow \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C
+    \end{equation}
+    \textit{В обратную сторону}: если
+    \begin{equation}
+      \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C
     \end{equation}
   \end{proof}
 
@@ -127,7 +142,7 @@
         \begin{equation}
           f \preceq g \Rightarrow (f \prec g) \lor (f \sim g).
         \end{equation}
-        В обратную сторону: если известно, что функция $f$ или строго меньше функции $g$, или равна $g$, то это означает, что не превосходит (меньше либо равна) $g$:
+        \textit{В обратную сторону}: если известно, что функция $f$ или строго меньше функции $g$, или равна $g$, то это означает, что не превосходит (меньше либо равна) $g$:
         \begin{equation}
           (f \prec g) \lor (f \sim g) \Rightarrow f \preceq g.
         \end{equation}
