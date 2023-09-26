@@ -199,35 +199,47 @@
       n & n^2 & + & + & - & - & - \\
       \log^k n & n^{\epsilon} & + & + & - & - & - \\
       n^k & c^n & + & + & - & - & - \\
-      \sqrt{n} & n^{\sin n} & & & & & \\
-      2^n & 2^{n \slash 2} & & & & & \\
-      n^{\log m} & m^{\log n} & & & & & \\
-      \log (n!) & \log(n^n) & & & & & \\
+      \sqrt{n} & n^{\sin n} & ? & ? & ? & ? & ? \\
+      2^n & 2^{n \slash 2} & - & - & - & + & + \\
+      n^{\log m} & m^{\log n} & + & - & + & - & + \\
+      \log (n!) & \log(n^n) & + & - & + & - & + \\
       \hline
     \end{array}
     $$
     Здесь все буквы, кроме $n$, --- положительные константы.
     \begin{proof}
-      Насколько я понял, тут подразумевается вот такое отношение $$A = rel(B).$$
+      Насколько я понял, тут подразумевается вот такое отношение $$A = rel(B),$$
+      где
+      $$rel \in \{\O, o, \Theta, \omega, \Omega\}.$$
       Рассмотрим все строчки по порядку:
       \begin{eqnarray}
         \lim\limits_{n \to \infty}{\dfrac{\log_{\alpha}^k n}{n^{\epsilon}}} = \lim\limits_{n \to \infty}{\dfrac{k\log_{\alpha}^{k-1} n}{n \cdot \ln \alpha \cdot \epsilon \cdot n^{\epsilon - 1}}} = \lim\limits_{n \to \infty}{\dfrac{k\log_{\alpha}^{k-1} n}{\ln \alpha \cdot \epsilon \cdot n^{\epsilon}}} = \ldots = \lim\limits_{n \to \infty}{\dfrac{C}{n^{\beta}}} = 0 \Rightarrow \\
-        \log^k n = \O(n^{\epsilon}) \quad \text{или} \quad \log^k n = o(n^{\epsilon})
+        \log^k n = \O(n^{\epsilon}) \quad \text{или} \quad \log^k n = o(n^{\epsilon}).
+      \end{eqnarray}
+      По правилу Лопиталя:
+      \begin{eqnarray}
+        \lim\limits_{n \to \infty}{\dfrac{n^k}{c^n}} = \lim\limits_{n \to \infty}{\dfrac{k\cdot n^{k-1}}{\log c \cdot c^n}} = \ldots = \lim\limits_{n \to \infty}{\dfrac{const}{c^n}} = 0 \Rightarrow \\
+        n^k = \O(c^n) \quad \text{или} \quad n^k = o(c^n).
       \end{eqnarray}
       \begin{eqnarray}
-        \lim\limits_{n \to \infty}{\dfrac{n^k}{c^n}}
+        \lim\limits_{n \to \infty}{\dfrac{\sqrt{n}}{n^{\sin n}}} = ?,
       \end{eqnarray}
+      потому что не понятно, к чему стремится синус\dots Если бы считался интеграл, то стремление было бы к нулю, но тут не интеграл, а значение\dots
+
+      Применим правило степеней:
       \begin{eqnarray}
-        \lim\limits_{n \to \infty}{\dfrac{\sqrt{n}}{n^{\sin n}}}
+        \lim\limits_{n \to \infty}{\dfrac{2^n}{2^{n/2}}} = \lim\limits_{n \to \infty}{2^{n/2}} = \infty \Rightarrow \\
+        2^n = \omega(2^{n/2}) \quad \text{или} \quad 2^n = \Omega(2^{n/2}).
       \end{eqnarray}
+      Здесь $n$ и $m$ можно поменять местами:
       \begin{eqnarray}
-        \lim\limits_{n \to \infty}{\dfrac{2^n}{2^{n/2}}} = \lim\limits_{n \to \infty}{2^{n/2}} = \infty
+        \lim\limits_{n \to \infty}{\dfrac{n^{\log m}}{m^{\log n}}} = \lim\limits_{n \to \infty}{\dfrac{m^{\log n}}{m^{\log n}}} = 1 \Rightarrow \\
+        n^{\log m} = \O(m^{\log n}) \quad \text{или} \quad n^{\log m} = \Theta(m^{\log n}) \quad \text{или} \quad n^{\log m} = \Omega(m^{\log n}).
       \end{eqnarray}
+      Из-за монотонности можно убрать логарифм и воспользоваться формулой Стирлинга:
       \begin{eqnarray}
-        \lim\limits_{n \to \infty}{\dfrac{n^{\log m}}{m^{\log n}}} = \lim\limits_{n \to \infty}{\dfrac{m^{\log n}}{m^{\log n}}} = 1
-      \end{eqnarray}
-      \begin{eqnarray}
-        \lim\limits_{n \to \infty}{\dfrac{\log (n!)}{\log (n^n)}}
+        \lim\limits_{n \to \infty}{\dfrac{\log (n!)}{\log (n^n)}} = \lim\limits_{n \to \infty}{\dfrac{n!}{n^n}} = \lim\limits_{n \to \infty}{\dfrac{const\cdot n^n}{n^n}} = const \Rightarrow \\
+        \log (n!) = \O(n^n) \quad \text{или} \quad \log (n!) = \Theta(n^n) \quad \text{или} \quad \log (n!) = \Omega(n^n).
       \end{eqnarray}
     \end{proof}
 
