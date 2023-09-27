@@ -10,59 +10,77 @@
   \begin{proof}
     \textit{В одну сторону}:
 
-    По определению из лекции:
-    \begin{eqnarray}
-      f(n) = \Theta(g(n)), \text{ если } f(n) = \O(g(n)) \text{ и } g(n) = \O(f(n)), \\
-      f(n) = \O(g(n)), \text{ если } \exists C > 0, N \in \N: \forall n \geq N \quad f(n) \leq C \cdot g(n), \\
-      g(n) = \O(f(n)), \text{ если } \exists C > 0, N \in \N: \forall n \geq N \quad g(n) \leq C \cdot f(n).
-    \end{eqnarray}
-    Таким образом, мы имеем систему:
+    Из $f = \Theta(g)$ не следует, что $\exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C$.
+    Например, пусть $f(n)$ и $g(n)$ -- некоторые положительные функции. Возьмем
+    \begin{equation}
+      f(n) = ((-1)^n + 2)\cdot g(n).
+    \end{equation}
+    Из примера следует, что
     \begin{equation}
       \begin{cases}
-        f(n) \leq C_1 \cdot g(n), \\
-        g(n) \leq C_2 \cdot f(n),
+        f(n) = 2\cdot g(n),\quad \text{n четные}, \\        
+        f(n) = 3\cdot g(n),\quad \text{n нечетные}.
       \end{cases}
     \end{equation}
-    где первое уравнение выполняется с некоторого $n_1$, а второе с некоторого $n_2$. Так как $f$ и $g$ отображают в положительные числа, то можем поделить без смены знака неравенства:
+    Если $f = \Theta(g)$ для всех $n$, то предел их отношения при таком задании $f(n)$ не сходится к какой-нибудь константе:
     \begin{equation}
-      \begin{cases}
-        \dfrac{f(n)}{g(n)} \leq C_1, \\ \qquad\qquad\qquad\qquad\qquad\Rightarrow\\
-        \dfrac{f(n)}{g(n)} \geq C_2.
-      \end{cases}
+      \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = \lim\limits_{n \to \infty} \frac{((-1)^n + 2)\cdot g(n)}{g(n)} = 2 + \lim\limits_{n \to \infty} (-1)^n = ?
     \end{equation}
-    Следовательно,
-    \begin{equation}\label{eq:doubleIneq}
-      C_2 \leq \dfrac{f(n)}{g(n)} \leq C_1.
-    \end{equation}
-    Устремим $n$ к бесконечности. Из (\ref{eq:doubleIneq}) видно, что отношение функций стремится к некоторой константе $C_3$:
-    \begin{equation}
-      C_2 \leq C_3 \leq C_1.
-    \end{equation}
-    То есть:
-    \begin{equation}
-      f = \Theta(g) \Rightarrow \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C.
-    \end{equation}
-    \textit{В обратную сторону}: если
-    \begin{equation}
-      \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C,
-    \end{equation}
-    то, при $n \to \infty$, $f(n) \to C \cdot g(n)$, но
-    \begin{equation}
-      f(n) = \O(f(n)) = \O(C \cdot g(n)) = \O(g(n)).
-    \end{equation}
-    Также, из $\exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \dfrac{f(n)}{g(n)} = C$, можно сказать, что, при $n \to \infty$, $g(n) \to \dfrac{1}{C}f(n)$, но
-    \begin{equation}
-      g(n) = \O(g(n)) = \O\left(\dfrac{1}{C}f(n)\right) = \O(f(n)).
-    \end{equation}
-    Имеем, что
-    \begin{equation}
-      f(n) = \O(g(n)) \quad \text{и} \quad g(n) = \O(f(n)),
-    \end{equation}
-    из чего следует, что
-    \begin{equation}
-      f(n) = \Theta(g(n)).
-    \end{equation}
-    Получилось, что исходные утверждения эквивалентны.
+    Если хотя бы в одну сторону следствие не работает, то можно сказать, что утверждения не эквивалентны.
+
+    % По определению из лекции:
+    % \begin{eqnarray}
+    %   f(n) = \Theta(g(n)), \text{ если } f(n) = \O(g(n)) \text{ и } g(n) = \O(f(n)), \\
+    %   f(n) = \O(g(n)), \text{ если } \exists C > 0, N \in \N: \forall n \geq N \quad f(n) \leq C \cdot g(n), \\
+    %   g(n) = \O(f(n)), \text{ если } \exists C > 0, N \in \N: \forall n \geq N \quad g(n) \leq C \cdot f(n).
+    % \end{eqnarray}
+    % Таким образом, мы имеем систему:
+    % \begin{equation}
+    %   \begin{cases}
+    %     f(n) \leq C_1 \cdot g(n), \\
+    %     g(n) \leq C_2 \cdot f(n),
+    %   \end{cases}
+    % \end{equation}
+    % где первое уравнение выполняется с некоторого $n_1$, а второе с некоторого $n_2$. Так как $f$ и $g$ отображают в положительные числа, то можем поделить без смены знака неравенства:
+    % \begin{equation}
+    %   \begin{cases}
+    %     \dfrac{f(n)}{g(n)} \leq C_1, \\ \qquad\qquad\qquad\qquad\qquad\Rightarrow\\
+    %     \dfrac{f(n)}{g(n)} \geq C_2.
+    %   \end{cases}
+    % \end{equation}
+    % Следовательно,
+    % \begin{equation}\label{eq:doubleIneq}
+    %   C_2 \leq \dfrac{f(n)}{g(n)} \leq C_1.
+    % \end{equation}
+    % Устремим $n$ к бесконечности. Из (\ref{eq:doubleIneq}) видно, что отношение функций стремится к некоторой константе $C_3$:
+    % \begin{equation}
+    %   C_2 \leq C_3 \leq C_1.
+    % \end{equation}
+    % То есть:
+    % \begin{equation}
+    %   f = \Theta(g) \Rightarrow \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C.
+    % \end{equation}
+    % \textit{В обратную сторону}: если
+    % \begin{equation}
+    %   \exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C,
+    % \end{equation}
+    % то, при $n \to \infty$, $f(n) \to C \cdot g(n)$, но
+    % \begin{equation}
+    %   f(n) = \O(f(n)) = \O(C \cdot g(n)) = \O(g(n)).
+    % \end{equation}
+    % Также, из $\exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \dfrac{f(n)}{g(n)} = C$, можно сказать, что, при $n \to \infty$, $g(n) \to \dfrac{1}{C}f(n)$, но
+    % \begin{equation}
+    %   g(n) = \O(g(n)) = \O\left(\dfrac{1}{C}f(n)\right) = \O(f(n)).
+    % \end{equation}
+    % Имеем, что
+    % \begin{equation}
+    %   f(n) = \O(g(n)) \quad \text{и} \quad g(n) = \O(f(n)),
+    % \end{equation}
+    % из чего следует, что
+    % \begin{equation}
+    %   f(n) = \Theta(g(n)).
+    % \end{equation}
+    % Получилось, что исходные утверждения эквивалентны.
   \end{proof}
 
   \item
