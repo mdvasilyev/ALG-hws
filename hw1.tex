@@ -186,31 +186,52 @@
       % неверное.
     \end{proof}
 
-  \item
+  \item[6.]
     Докажите, или приведите контрпример:
     \begin{enumerate}
       \item $g(n) = o(f(n)) \Rightarrow f(n) + g(n) = \Theta(f(n))$
       \begin{proof}
         \begin{equation}
-          g(n) = o(f(n)), \quad \text{если } \quad \exists C > 0, N \in \N: \forall n \geq N \quad g(n) < C \cdot f(n).
+          g(n) = o(f(n)), \quad \text{если } \quad \forall C > 0: \exists N \in \N: \forall n \geq N \quad g(n) < C \cdot f(n).
         \end{equation}
-        Так как $g(n) = o(f(n))$, можно ограничить сверху:
+        Сумму функций можно переписать:
         \begin{equation}
-          f(n) + g(n) < f(n) + C \cdot f(n) = (C + 1) \cdot f(n) = \O(f(n)).
+          f(n) + g(n) = f(n) + o(f(n)).
         \end{equation}
-        Ограничим снизу:
+        Но, из определения о малого, такая сумма не превосходит функцию $f$, умноженную на константу:
         \begin{equation}
-          f(n) + g(n) > g(n) + \frac{1}{C} \cdot g(n) = (\frac{1}{C} + 1) \cdot g(n) = \O(g(n)).
+          f(n) + o(f(n)) < f(n) + C \cdot f(n) = C' \cdot f(n).
         \end{equation}
-        Получается, что сумма $f(n) + g(n)$ в диапазоне:
+        Очевидно, что какая-нибудь функция $h(n)$ имеет такую же скорость роста, как и она сама, то есть:
         \begin{equation}
-          \O(g(n)) < f(n) + g(n) < \O(f(n)).
+          h(n) = \Theta(h(n)).
         \end{equation}
-        Можно сделать вывод, что, действительно,
+        Сделаем те же рассуждения для полученной ранее функции $C' \cdot f(n)$:
         \begin{equation}
-          f(n) + g(n) = \Theta(f(n)),
+          C' \cdot f(n) = \Theta(C' \cdot f(n)).
         \end{equation}
-        т. е. сумма имеет одинаковую скорость роста с доминирующей функцией.
+        Константу можно убрать:
+        \begin{equation}
+          \Theta(C' \cdot f(n)) = \Theta(f(n)).
+        \end{equation}
+        Проследив за цепочкой рассуждений, можно понять, что мы доказали следующий факт:
+        \begin{equation}
+          f(n) + g(n) = \Theta(f(n)), \quad \text{если} \quad g(n) = o(f(n)).
+        \end{equation}
+
+        % Ограничим снизу:
+        % \begin{equation}
+        %   f(n) + g(n) > g(n) + \frac{1}{C} \cdot g(n) = (\frac{1}{C} + 1) \cdot g(n) = \O(g(n)).
+        % \end{equation}
+        % Получается, что сумма $f(n) + g(n)$ в диапазоне:
+        % \begin{equation}
+        %   \O(g(n)) < f(n) + g(n) < \O(f(n)).
+        % \end{equation}
+        % Можно сделать вывод, что, действительно,
+        % \begin{equation}
+        %   f(n) + g(n) = \Theta(f(n)),
+        % \end{equation}
+        % т. е. сумма имеет одинаковую скорость роста с доминирующей функцией.
       \end{proof}
       \item $f(n) = \O(g(n)) \Leftrightarrow f(n) = o(g(n)) \lor f(n) = \Theta(g(n))$
       \begin{proof}
@@ -239,7 +260,7 @@
       \end{proof}
     \end{enumerate}
 
-  \item Заполните табличку и поясните (особенно строчки 4 и 7):
+  \item[7.] Заполните табличку и поясните (особенно строчки 4 и 7):
     $$
     \begin{array}{|cc|c|c|c|c|c|}
       \hline
