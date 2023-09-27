@@ -13,18 +13,11 @@
     Из $f = \Theta(g)$ не следует, что $\exists C,  0 < C < \infty : \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = C$.
     Например, пусть $f(n)$ и $g(n)$ -- некоторые положительные функции. Возьмем
     \begin{equation}
-      f(n) = ((-1)^n + 2)\cdot g(n).
-    \end{equation}
-    Из примера следует, что
-    \begin{equation}
-      \begin{cases}
-        f(n) = 2\cdot g(n),\quad \text{n четные}, \\        
-        f(n) = 3\cdot g(n),\quad \text{n нечетные}.
-      \end{cases}
+      f(n) = (\sin(n) + 2)\cdot g(n), \qquad -1 < \sin(n) < 1 \quad \forall n \in \N.
     \end{equation}
     Если $f = \Theta(g)$ для всех $n$, то предел их отношения при таком задании $f(n)$ не сходится к какой-нибудь константе:
     \begin{equation}
-      \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = \lim\limits_{n \to \infty} \frac{((-1)^n + 2)\cdot g(n)}{g(n)} = 2 + \lim\limits_{n \to \infty} (-1)^n = ?
+      \lim\limits_{n \to \infty} \frac{f(n)}{g(n)} = \lim\limits_{n \to \infty} \frac{(\sin(n) + 2)\cdot g(n)}{g(n)} = 2 + \lim\limits_{n \to \infty} \sin(n) = ?
     \end{equation}
     Если хотя бы в одну сторону следствие не работает, то можно сказать, что утверждения не эквивалентны.
 
