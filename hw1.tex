@@ -155,20 +155,17 @@
         (f \preceq g) \lor (g \preceq f).
       \end{equation}
       Вспомним, какие отношения у нас есть:
-      \begin{equation}
+      \begin{equation}\label{eq:rels}
         \O, \quad o, \quad \Theta, \quad \Omega, \quad \omega.
       \end{equation}
       Рассмотрим
       \begin{equation}
         \begin{cases}
-          f(n) = 2+(-1)^n\cdot n, \\
-          g(n) = \log(n).
+          f(n) = n, \\
+          g(n) = n^{\sin(n)}.
         \end{cases}
       \end{equation}
-      О большое:
-      \begin{equation}
-        f(n) = \O(g(n)), \quad \text{если } \quad \exists C > 0, N \in \N: \forall n \geq N \quad f(n) \leq C \cdot g(n)
-      \end{equation}
+      В случае таких функций мы не можем задать на них никакое отношение из~(\ref{eq:rels}). Потому что даже при большой константе $C$ и больших номерах $n$ синус, отображающий в отрезок $[-1,1]$, будет либо максимально прижимать к нулю, либо выдавать большое значение. В общем, отношения задать не получится.
       % Нет, не правда. Эквивалентность $f \sim g$ означает, что функции $f$ и $g$ асимптотически имеют одинаковую скорость роста. При этом, такое поведение можно гарантировать, если одновременно выполнены два условия: $(f \preceq g)$ и $(g \preceq f)$. В математических терминах это можно записать через пересечение:
       % \begin{equation}
       %   \forall f, g: (f \preceq g) \land (g \preceq f).
@@ -239,31 +236,50 @@
       \end{proof}
       \item $f(n) = \O(g(n)) \Leftrightarrow f(n) = o(g(n)) \lor f(n) = \Theta(g(n))$
       \begin{proof}
-        \begin{eqnarray}
-          \lim\limits_{n \to \infty}{\dfrac{\sqrt{n}}{n^{\sin n}}} = ?,
-        \end{eqnarray}
-        Выпишем определения:
-        \begin{eqnarray}
-          f(n) = \O(g(n)), \quad \text{если } \quad \exists C > 0, N \in \N: \forall n \geq N \quad f(n) \leq C \cdot g(n), \\
-          f(n) = o(g(n)), \quad \text{если } \quad \exists C > 0, N \in \N: \forall n \geq N \quad f(n) < C \cdot g(n), \\
-          f(n) = \Theta(g(n)) , \quad \text{если } \quad f(n) = \O(g(n)) \quad \text{и} \quad g(n) = \O(f(n)).
-        \end{eqnarray}
-        Утверждение (b) можно прочитать следующим образом: фраза ``функция $f$ растет не быстрее функции $g$'' эквивалента фразе ``функция $f$ или бесконечно малая относительно $g$, или имеет такую же скорость роста, как $g$''. Или в математических терминах:
+        Думал что-то такое привести в качестве контрпримера, но не знаю, времени не хватило доделать это все.
         \begin{equation}
-          f \preceq g \Leftrightarrow (f \prec g) \lor (f \sim g).
+          \begin{cases}
+            f(n) = (2 + (-1)^n)\cdot n, \\
+            g(n) = n.
+          \end{cases}
         \end{equation}
-        \textit{В одну сторону}: если известно, что функция $f$ растет не быстрее, чем функция $g$, то это означает, что $f$ либо строго меньше $g$, либо равна $g$:
+        Посмотрим варианты для $f(n)$:
         \begin{equation}
-          f \preceq g \Rightarrow (f \prec g) \lor (f \sim g).
+          \begin{cases}
+            f(n) = 3\cdot n, \quad \text{n четные}, \\
+            f(n) = 2\cdot n, \quad \text{n нечетные}.
+          \end{cases} 
         \end{equation}
-        \textit{В обратную сторону}: если известно, что функция $f$ или строго меньше функции $g$, или равна $g$, то это означает, что не превосходит (меньше либо равна) $g$:
+        В данном случае
         \begin{equation}
-          (f \prec g) \lor (f \sim g) \Rightarrow f \preceq g.
+          f(n) = \O(g(n)).
         \end{equation}
-        Так как было проведено доказательство в обе стороны, то можно ввести эквивалентность устверждений:
-        \begin{equation}
-          f \preceq g \Leftrightarrow (f \prec g) \lor (f \sim g).
-        \end{equation}
+        Но из этого\dots\textcolor{gray}{[недописано]}
+        % \begin{eqnarray}
+        %   \lim\limits_{n \to \infty}{\dfrac{\sqrt{n}}{n^{\sin n}}} = ?,
+        % \end{eqnarray}
+        % Выпишем определения:
+        % \begin{eqnarray}
+        %   f(n) = \O(g(n)), \quad \text{если } \quad \exists C > 0, N \in \N: \forall n \geq N \quad f(n) \leq C \cdot g(n), \\
+        %   f(n) = o(g(n)), \quad \text{если } \quad \exists C > 0, N \in \N: \forall n \geq N \quad f(n) < C \cdot g(n), \\
+        %   f(n) = \Theta(g(n)) , \quad \text{если } \quad f(n) = \O(g(n)) \quad \text{и} \quad g(n) = \O(f(n)).
+        % \end{eqnarray}
+        % Утверждение (b) можно прочитать следующим образом: фраза ``функция $f$ растет не быстрее функции $g$'' эквивалента фразе ``функция $f$ или бесконечно малая относительно $g$, или имеет такую же скорость роста, как $g$''. Или в математических терминах:
+        % \begin{equation}
+        %   f \preceq g \Leftrightarrow (f \prec g) \lor (f \sim g).
+        % \end{equation}
+        % \textit{В одну сторону}: если известно, что функция $f$ растет не быстрее, чем функция $g$, то это означает, что $f$ либо строго меньше $g$, либо равна $g$:
+        % \begin{equation}
+        %   f \preceq g \Rightarrow (f \prec g) \lor (f \sim g).
+        % \end{equation}
+        % \textit{В обратную сторону}: если известно, что функция $f$ или строго меньше функции $g$, или равна $g$, то это означает, что не превосходит (меньше либо равна) $g$:
+        % \begin{equation}
+        %   (f \prec g) \lor (f \sim g) \Rightarrow f \preceq g.
+        % \end{equation}
+        % Так как было проведено доказательство в обе стороны, то можно ввести эквивалентность устверждений:
+        % \begin{equation}
+        %   f \preceq g \Leftrightarrow (f \prec g) \lor (f \sim g).
+        % \end{equation}
       \end{proof}
     \end{enumerate}
 
