@@ -115,12 +115,31 @@
 	$$
 	Здесь $\log^* n$ --- \href{https://en.wikipedia.org/wiki/Iterated_logarithm}{итерированный логарифм}.
 	Все логарифмы двоичные.
+	\begin{solution}
+		Если $n > 1$, то 
+		\begin{eqnarray}
+			T(n) = 2 T(\lfloor \log n \rfloor) + 2^{\log^* n} = 2 (2 T(\lfloor \log \log n \rfloor) + 2^{\log^* \log n}) + 2^{\log^* n} = \\
+			2^2 \cdot T(\lfloor \log \log n \rfloor) + 2\cdot2^{\log^* n} = 2^3 \cdot T(\lfloor \log \log \log n \rfloor) + 3 \cdot 2^{\log^* n} = \ldots = \\
+			2^m \cdot T(\lfloor \log \ldots (m) \ldots \log n \rfloor) + m \cdot 2^{\log^* n} = \ldots
+		\end{eqnarray}
+		Мы останавливаемся дробить задачи, когда
+		\begin{equation}
+			\log \ldots (m) \ldots \log n \leq 1.
+		\end{equation}
+		Для всех довольно адекватных входных данных $n \leq 2^{65536}$ нам достаточно $m=5$ итераций применения двоичного логарифма, чтобы свести задачу размера $n$ к 1, поэтому
+		\begin{equation}
+			T(n) = 2^5 \cdot 1 + 5 \cdot 2^{\log^* n} \leq 2^5 \cdot 1 + 5 \cdot 6 = \O(1).
+		\end{equation}
+		Честно говоря, не знаю, насколько валидно вообще такие преобразования делать, но, думаю, можно оставить, например, вот так:
+		\begin{equation}
+			T(n) = \O(2^{\log \log \log \log \log n}).
+		\end{equation}
+	\end{solution}
 
   \item 
 	Есть $m$ стойл с координатами $x_1, \ldots, x_m$ и $n$ коров. Расставить коров по стойлам
 	(не более одной в стойло) так, чтобы минимальное расстояние между коровами было максимально.
 	$\O(m (\log{m} + \log{x_{\max}}))$.
-
 	\begin{solution}
 		Имея последовательность стойл $x_1, \ldots, x_m$, отсортируем ее за $\O(m \log m)$, например, сортировкой слиянием. Если $n > m$, то задача смысла не имеет, поэтому будем считать, что $n \leq m$. Чтобы решить задачу будем действовать следующим образом: первую корову поставим в первое стойло, а дальше будем максимизировать минимальное расстояние $\delta$ бинарным поиском.
 		
