@@ -1,0 +1,299 @@
+\section{Сортировки и кучи}
+
+% \subsection{Практика}
+
+% \begin{enumerate}
+%   \item
+%     Покажите, что любая сортировка, которая верно работает хотя бы
+%     на доле $\frac{1}{100^n}$ от всех перестановок, не может работать за $o(n \log n)$
+%     на всех тестах.
+
+%   \item
+%     Модифицируйте операцию \texttt{SiftUp} для бинарной кучи так,
+%     чтобы она по-прежнему работала за $\O(\log n)$, но при этом делала
+%     лишь $\O(\log\log n)$ сравнений.
+
+%   \item
+%     Модифицируйте операцию \texttt{SiftDown} для бинарной кучи так,
+%     чтобы она по-прежнему работала за $\O(\log n)$, но при этом делала
+%     лишь $\log_{2}n + \O(\log\log n)$ сравнений.
+
+%   \item
+%     Придумайте детерминированную структуру данных на основе бинарной
+%     кучи, которая умеет делать \texttt{Insert(x)},
+%     \texttt{DeleteMedian()} за $\O(\log n)$, \texttt{GetMedian()} за $\O(1)$.
+
+%   \item
+%     Дана обычная бинарная куча (с минимумом в голове), требуется
+%     узнать $k$-й минимум.
+%     \begin{enumerate}
+%       \item $\O(k\log n)$
+%       \item $\O(k^2)$
+%       \item $\O(k\log k)$
+%     \end{enumerate}
+
+% %   \item
+% % 		Даны два массива $a$ и $b$ длины $n$, сгенерировать все
+% % 		попарные суммы $a_i + b_j$ в сортированном порядке.
+% % 		\begin{enumerate}
+% % 			\item За $\O(n^2 \log n)$.
+% % 			\item За $\O(n^3)$ с использованием $\O(n)$ дополнительной памяти.
+% % 			\item За $\O(n^2 \log n)$ с использованием $\O(n)$ дополнительной памяти.
+% % 			\item За $\O(n^3)$ с использованием $\O(1)$ дополнительной памяти. Входные массивы отсортированы.
+% % 		\end{enumerate}
+
+% 	\item
+% 		Дан массив длины $n$, в котором встречаются $m \le n$ различных элементов.
+% 		\begin{enumerate}
+% 			\item
+% 			Пусть зафиксирован набор частот элементов $p_i > 0, i = 1 \dots m$. Докажите нижнюю оценку
+% 			$n \left( \sum_{i = 1}^{m}{p_i \log{\frac{1}{p_i}}} \right) - n \log{e}$ на число сравнений в худшем случае
+% 			при сортировке сравнениями. Полезный факт: $n\ln{n} \ge \ln{n!} = n\ln{n} - n + \O(\ln{n})$.
+			
+% 			\item
+% 			Докажите нижнюю оценку $n \log{\frac{m}{e}}$ на число сравнений в худшем случае при сортировке
+% 			сравнениями в пределе $n \gg m$.
+% 		\end{enumerate}
+
+%   \item
+%     Дано бинарное дерево: $Tree ::= Node (Tree, Tree) | Empty$ (эта
+%     запись означает, что дерево --- это либо вершина с парой
+%     потомков-деревьев, либо особое значение $Empty$).
+%     Определим функцию \textbf{rank($x$)} следующим образом:
+%     \begin{itemize}
+%     \item \textbf{rank}($Empty$) = 0
+%     \item \textbf{rank($Node (left, right)$)} =
+%       $min(\textbf{rank}(left), \textbf{rank}(right)) + 1$.
+%     \end{itemize}
+
+%     Назовём бинарное дерево \emph{скошенным влево (левацким)}, если
+%     для его вершин выполнено следующее свойство:
+%     $$\forall_{x = Node (left, right)} \textbf{rank}(left) \ge
+%     \textbf{rank}(right).$$ \emph{Скошенная влево (левацкая) куча} ---
+%     это скошенное влево дерево, в вершинах которого хранятся данные,
+%     для которых выполнено свойство кучи.
+
+%     \begin{enumerate}
+%     \item Докажите, что для любого скошенного влево дерева
+%       $\left|T\right| \geq 2^{\textbf{rank}(T)} - 1$ ($\left|T\right|$
+%       обозначает количество вершин в дереве $T$).
+%     \item Придумайте, как слить две скошенные влево кучи $H_1$ и $H_2$
+%       за время $\O(\log{\left|H_1\right|} + \log{\left|H_2\right|})$.
+%     \item Придумайте, как используя операцию слияния, построенную на
+%       предыдущем шаге, реализовать операции:
+%       \begin{itemize}
+%       \item \texttt{Insert(х)} --- добавление элемента $x$ в кучу,
+%       \item \texttt{ExtractMin()} --- удаление минимального элемента из кучи.
+%       \end{itemize}
+%     \end{enumerate}
+
+%   \item
+%     Пусть $B_n$ (биномиальное дерево порядка $n$) определено следующим
+%     образом:
+%     \begin{itemize}
+%       \item при $n = 0$ это дерево из одной вершины.
+%       \item при $n > 0$ это $B_{n - 1}$, которому первым ребенком
+%         подвешено еще одно $B_{n - 1}$.
+%     \end{itemize}
+
+%     \begin{enumerate}
+%       \item Докажите, что $B_n$ имеет высоту $n$.
+%       \item Докажите, что в $B_n$ содержится ровно $2^n$ вершин.
+%       \item Определим биномиальную кучу как набор биномиальных
+%         деревьев, в котором нет двух деревьев одного порядка.
+%         Покажите, что для любого $n$ существует биномиальная куча с
+%         $n$ вершинами.
+%       \item Пусть на всех деревьях биномиальной кучи выполняется
+%         свойство кучи ($\min$ в голове). Придумайте \texttt{GetMin} за
+%         $\O(\log{n})$.
+%       \item Придумайте \texttt{Merge} за $\O(\log{n})$.
+%       \item Придумайте \texttt{Add} за $\O(\log{n})$.
+%       \item Придумайте \texttt{ExtractMin} за $\O(\log{n})$.
+%       \item Придумайте \texttt{DecreaseKey} по ссылке на узел. $\O(\log{n})$.
+%       \item Придумайте \texttt{Delete} по ссылке на узел. $\O(\log{n})$.
+%     \end{enumerate}
+
+%   \item
+%     Покажите, что $n$ операций \texttt{Add} подряд в пустую биномиальную
+%     кучу работают за $\O(n)$.
+
+% \subsection*{Дополнительные задачи}
+
+%   \item
+%     Предъявите последовательность действий, при которой \texttt{LeftistHeap} из пустой
+%     станет бамбуком (цепочкой из вершин, у каждой один ребенок).
+
+%   \item
+%     Куча хранится в массиве длины $n$. Родитель $p$ хранит детей в
+%     ячейках $2 \cdot p + 1$ и $2 \cdot p + 2$. Алгоритм приступает к
+%     сортировке. Сортировка устроена следующим образом.
+%     \begin{itemize}
+%       \item Поменять первый и последний элемент кучи местами.
+%       \item Уменьшить размер кучи на единицу.
+%       \item Запустить \texttt{SiftDown} на первом элементе.
+%     \end{itemize}
+%     \texttt{SiftDown} меняет родителя с наибольшим ребенком (при
+%     условии, что ребенок больше родителя)и запускается
+%     рекурсивно. Требуется придумать алгоритм, который по $n$ выдаёт
+%     перестановку чисел от $1$ до $n$, которая является корректной
+%     кучей и приводит к максимальному количеству вызовов
+%     \texttt{SiftDown} при сортировке. Время работы --- $\O(n \log n)$.
+    
+% \end{enumerate}
+
+% \pagebreak
+\subsection{Домашнее задание}
+\begin{enumerate}
+ \item
+  В свободное время Анка-пулемётчица любит сортировать патроны по
+  серийным номерам. Вот и сейчас она только разложила патроны на
+  столе в строго отсортированном порядке, как Иван Васильевич
+  распахнул дверь с такой силой, что все патроны на столе подпрыгнули
+  и немного перемешались. Оставив ценные указания, Иван Васильевич
+  отправился восвояси.  Как оказалось, патроны перемешались не
+  сильно. Каждый патрон отклонился от своей позиции не более чем на
+  $k$. Всего патронов $n$. Помогите Анке отсортировать
+  патроны.
+
+  \begin{enumerate}
+     \item Отсортируйте патроны за $\O(nk)$.
+     \item Отсортируйте патроны за $\O(n + I)$, 
+      где $I$ --- число инверсий.
+     \item Докажите нижнюю оценку на время сортировки $\Omega(n \log k)$.
+     \item Отсортируйте патроны за $\O(n \log k)$.
+  \end{enumerate}
+
+  \item
+    Рассмотрим бинарную скошенную систему исчисления. На каждой
+    позиции в скошенной записи числа может стоять цифра 0, 1 или
+    2. Число $\overline{a_k a_{k-1} \cdots a_2 a_1}$ в скошенной системе
+    переводится в десятичную по формуле $\sum_{i = 1}^k a_i \cdot (2^i - 1)$.
+
+    В скошенной системе счисления есть два ограничения: цифра 2 может
+    встречаться в записи не более одного раза; все цифры следующих
+    меньших разрядов равны нулю.  Пример первых чисел:
+    $1,\,2,\,10,\,11,\,12,\,20,\,100,\,101\dots$
+
+    \begin{enumerate}
+      \item Докажите, что каждое неотрицательное целое число имеет
+        единственное возможное представление в скошенной системе счисления.
+      \item Придумайте, как увеличить число в скошенной системе на
+        единицу за $\O(1)$.
+    \end{enumerate}
+
+  \item
+    Определим структуру данных <<скошенный список>>. Список длины $n$ строится так:
+    \begin{itemize}
+		\item запишем число $n$ в скошенной системе счисления: $\overline{a_k a_{k-1} \cdots a_2 a_1}$
+		\item для каждого $i$ смотрим в соответствующую позицию скошенной записи числа $n$ и создаём $a_i$ полных двоичных деревьев высоты $i$
+		\item размещаем $n$ элементов списка: сперва выбираем дерево в порядке возрастания высоты, а внутри конкретного дерева размещаем в порядке обхода в глубину: <<корень, левый ребёнок, правый ребёнок>>
+	\end{itemize}
+
+    \begin{figure}[H]
+      \captionsetup[subfigure]{labelformat=empty}
+      \centering
+      \begin{subfigure}[b]{0.2\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { a };
+        \end{tikzpicture}
+        \caption{[a]}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.2\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { b ; a };
+        \end{tikzpicture}
+        \caption{[b, a]}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.2\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { c -> { b, a }; };
+        \end{tikzpicture}
+        \caption{[c, b, a]}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.2\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { d ; c -> { b, a }; };
+        \end{tikzpicture}
+        \caption{[d, c, b, a]}
+      \end{subfigure}
+      \vfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { e ; d ; c -> { b, a }; };
+        \end{tikzpicture}
+        \caption{[e, d, c, b, a]}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { f -> { e ; d } ; c -> { b ; a }; };
+        \end{tikzpicture}
+        \caption{[f, e, d, c, b, a]}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { g -> { f -> { e ; d } ; c -> { b ; a }; }; };
+        \end{tikzpicture}
+        \caption{[g, f, e, d, c, b, a]}
+      \end{subfigure}
+      \caption{Примеры скошенных списков}
+    \end{figure}
+
+    Придумайте, как реализовать следующие операции со списком длины
+    $n$:
+    \begin{enumerate}
+      \item Добавление элемента в начало списка за $\O(1)$.
+      \item Доступ к $i$-му по порядку элементу за $\O(\log{n})$.
+      \item Получить скошенный список из $k$ последних элементов данного скошенного списка за $\O(\log{n})$.
+    \end{enumerate}
+
+  \item
+    Напишите псевдокод для структуры данных, реализующей операции:
+    \begin{itemize}
+      \item \texttt{push(key, priority)} --- добавить ключ \texttt{key} (которого там не было) с приоритетом \texttt{priority}.
+      \item \texttt{pop()} --- извлечь ключ с минимальным приоритетом.
+      \item \texttt{decrease\_priority(key, new\_priority)} --- уменьшить приоритет ключа \texttt{key} (который в этот момент присутствует в структуре).
+    \end{itemize}
+    Все ключи --- целые числа от 1 до $n$. Все операции должны работать за детерменированные $\O(\log{n})$.
+
+% \subsection*{Дополнительные задачи}
+
+%   \item
+% 	Куча хранится в массиве $h[0 \dots n - 1]$ длины $n$. Родитель $p$ хранит детей в
+% 	ячейках $2 \cdot p + 1$ и $2 \cdot p + 2$. Алгоритм приступает к
+% 	сортировке. Сортировка устроена следующим образом.
+% 	\begin{itemize}
+% 	  \item Поменять первый и последний элемент кучи местами.
+% 	  \item Уменьшить $n$ на единицу.
+% 	  \item Запустить \texttt{SiftDown} на первом элементе.
+% 	\end{itemize}
+	
+% 	\begin{lstlisting}
+% void SiftDown(int i) {
+%     int j = 2 * i + 1;
+%     if (j + 1 < n && h[j + 1] > h[j])
+%         j = j + 1;
+%     if (j < n && h[j] > h[i]) {
+%         swap(h[i], h[j]);
+%         SiftDown(j);
+%     }
+% }
+%     \end{lstlisting}
+	
+%     Придумайте алгоритм, который по $n$ выдаёт
+% 	перестановку чисел от $1$ до $n$, которая является корректной
+% 	кучей и приводит к максимальному количеству вызовов
+% 	\texttt{SiftDown} при сортировке. Время работы --- $\O(n \log n)$.
+
+\end{enumerate}
