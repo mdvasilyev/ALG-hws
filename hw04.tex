@@ -235,84 +235,84 @@
         единицу за $\O(1)$.
     \end{enumerate}
 
-  \item
-    Определим структуру данных <<скошенный список>>. Список длины $n$ строится так:
-    \begin{itemize}
-		\item запишем число $n$ в скошенной системе счисления: $\overline{a_k a_{k-1} \cdots a_2 a_1}$
-		\item для каждого $i$ смотрим в соответствующую позицию скошенной записи числа $n$ и создаём $a_i$ полных двоичных деревьев высоты $i$
-		\item размещаем $n$ элементов списка: сперва выбираем дерево в порядке возрастания высоты, а внутри конкретного дерева размещаем в порядке обхода в глубину: <<корень, левый ребёнок, правый ребёнок>>
-	\end{itemize}
+  % \item
+  %   Определим структуру данных <<скошенный список>>. Список длины $n$ строится так:
+  %   \begin{itemize}
+	% 	\item запишем число $n$ в скошенной системе счисления: $\overline{a_k a_{k-1} \cdots a_2 a_1}$
+	% 	\item для каждого $i$ смотрим в соответствующую позицию скошенной записи числа $n$ и создаём $a_i$ полных двоичных деревьев высоты $i$
+	% 	\item размещаем $n$ элементов списка: сперва выбираем дерево в порядке возрастания высоты, а внутри конкретного дерева размещаем в порядке обхода в глубину: <<корень, левый ребёнок, правый ребёнок>>
+	% \end{itemize}
 
-    \begin{figure}[H]
-      \captionsetup[subfigure]{labelformat=empty}
-      \centering
-      \begin{subfigure}[b]{0.2\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { a };
-        \end{tikzpicture}
-        \caption{[a]}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.2\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { b ; a };
-        \end{tikzpicture}
-        \caption{[b, a]}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.2\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { c -> { b, a }; };
-        \end{tikzpicture}
-        \caption{[c, b, a]}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.2\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { d ; c -> { b, a }; };
-        \end{tikzpicture}
-        \caption{[d, c, b, a]}
-      \end{subfigure}
-      \vfill
-      \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { e ; d ; c -> { b, a }; };
-        \end{tikzpicture}
-        \caption{[e, d, c, b, a]}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { f -> { e ; d } ; c -> { b ; a }; };
-        \end{tikzpicture}
-        \caption{[f, e, d, c, b, a]}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.3\textwidth}
-        \centering
-        \begin{tikzpicture}
-          \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { g -> { f -> { e ; d } ; c -> { b ; a }; }; };
-        \end{tikzpicture}
-        \caption{[g, f, e, d, c, b, a]}
-      \end{subfigure}
-      \caption{Примеры скошенных списков}
-    \end{figure}
+  %   \begin{figure}[H]
+  %     \captionsetup[subfigure]{labelformat=empty}
+  %     \centering
+  %     \begin{subfigure}[b]{0.2\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { a };
+  %       \end{tikzpicture}
+  %       \caption{[a]}
+  %     \end{subfigure}
+  %     \hfill
+  %     \begin{subfigure}[b]{0.2\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { b ; a };
+  %       \end{tikzpicture}
+  %       \caption{[b, a]}
+  %     \end{subfigure}
+  %     \hfill
+  %     \begin{subfigure}[b]{0.2\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { c -> { b, a }; };
+  %       \end{tikzpicture}
+  %       \caption{[c, b, a]}
+  %     \end{subfigure}
+  %     \hfill
+  %     \begin{subfigure}[b]{0.2\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { d ; c -> { b, a }; };
+  %       \end{tikzpicture}
+  %       \caption{[d, c, b, a]}
+  %     \end{subfigure}
+  %     \vfill
+  %     \begin{subfigure}[b]{0.3\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { e ; d ; c -> { b, a }; };
+  %       \end{tikzpicture}
+  %       \caption{[e, d, c, b, a]}
+  %     \end{subfigure}
+  %     \hfill
+  %     \begin{subfigure}[b]{0.3\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { f -> { e ; d } ; c -> { b ; a }; };
+  %       \end{tikzpicture}
+  %       \caption{[f, e, d, c, b, a]}
+  %     \end{subfigure}
+  %     \hfill
+  %     \begin{subfigure}[b]{0.3\textwidth}
+  %       \centering
+  %       \begin{tikzpicture}
+  %         \graph[nodes={align=center,rectangle,draw=black,minimum size=6mm}, grow down sep, branch right sep] { g -> { f -> { e ; d } ; c -> { b ; a }; }; };
+  %       \end{tikzpicture}
+  %       \caption{[g, f, e, d, c, b, a]}
+  %     \end{subfigure}
+  %     \caption{Примеры скошенных списков}
+  %   \end{figure}
 
-    Придумайте, как реализовать следующие операции со списком длины
-    $n$:
-    \begin{enumerate}
-      \item Добавление элемента в начало списка за $\O(1)$.
-      \item Доступ к $i$-му по порядку элементу за $\O(\log{n})$.
-      \item Получить скошенный список из $k$ последних элементов данного скошенного списка за $\O(\log{n})$.
-    \end{enumerate}
+  %   Придумайте, как реализовать следующие операции со списком длины
+  %   $n$:
+  %   \begin{enumerate}
+  %     \item Добавление элемента в начало списка за $\O(1)$.
+  %     \item Доступ к $i$-му по порядку элементу за $\O(\log{n})$.
+  %     \item Получить скошенный список из $k$ последних элементов данного скошенного списка за $\O(\log{n})$.
+  %   \end{enumerate}
 
-  \item
+  \item[4]
     Напишите псевдокод для структуры данных, реализующей операции:
     \begin{itemize}
       \item \texttt{push(key, priority)} --- добавить ключ \texttt{key} (которого там не было) с приоритетом \texttt{priority}.
@@ -329,11 +329,11 @@
         \item Каждый узел будет хранить информацию о своем значении, приоритете, родителе, левом ребенке, правом брате и степени.
       \end{itemize}
 
-      Операция \texttt{push(key, priority)} будет соответствовать тому, что мы создадим новую кучу из этого одного узла $(\O(1))$, а потом объединим эту кучу с исходной биномиальной кучей. При слиянии мы будем следить за тем, чтобы выполнялись условия, приведенные выше. Если оказазывается так, что в куче появляются два дерева $B_{k-1}$, то мы смотрим какой из их корней меньше и прикрепляем то дерево, чей корень больше к дереву, чем корень меньше, получаем $B_{k-1}$. Делаем такую процедуру пока в куче не останется деревьев с одинаковой степенью. Если представить корни двух складываемых вершин в виде двоичного числа, где каждый бит будет соответствовать тому, есть ли вершина с такой степенью или нет, то слияние двух куч будет соответствовать сложение двух двоичных чисел. Время такого сложения пропорционально числу корневых вершин ($\Omega(\log{n})$). При \texttt{push(key, priority)} мы будем сливать исходную кучу с кучей, состоящей из одного дерева, которое состоит из одного элемента, поэтому время такой операции -- $\O(\log{n})$.
+      Операция \texttt{push(key, priority)} будет соответствовать тому, что мы создадим новую кучу из этого одного узла за $\O(1)$, а потом объединим эту кучу с исходной биномиальной кучей. При слиянии мы будем следить за тем, чтобы выполнялись условия, приведенные выше. Если оказазывается так, что в куче появляются два дерева $B_{k-1}$, то мы смотрим какой из их корней меньше и прикрепляем то дерево, чей корень больше к дереву, чем корень меньше, получаем $B_{k}$. Делаем такую процедуру пока в куче не останется деревьев с одинаковой степенью. Если представить корни двух складываемых вершин в виде двоичного числа, где каждый бит будет соответствовать тому, есть ли вершина с такой степенью или нет, то слияние двух куч будет соответствовать сложение двух двоичных чисел. Время такого сложения пропорционально числу корневых вершин ($\Omega(\log{n})$) (факт взят \href{https://neerc.ifmo.ru/wiki/index.php?title=%D0%91%D0%B8%D0%BD%D0%BE%D0%BC%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BA%D1%83%D1%87%D0%B0#merge}{отсюда}). При \texttt{push(key, priority)} мы будем сливать исходную кучу с кучей, состоящей из одного дерева, которое состоит из одного элемента, поэтому время такой операции -- $\O(\log{n})$.
 
       Операция \texttt{pop()} сначала будет искать бин. дерево с минимальным корневым значением с помощью бин. поиска за $\Theta(\log{n})$. Найдя нужный корень, удалим его за $\O(1)$, но потом из его детей образовалась новая куча за $\Theta(\log{n})$, которую нужно слить с исходной за $\Omega(\log{n})$. В итоге время работы такой операции $\O(\log{n})$.
 
-      Операция \texttt{decrease\_priority(key, new\_priority)} соответствует тому, что элемент будет всплывать как в обычной куче. На лекции показывали, что такая процедура работает за $\O(\log{n})$, так как глубина текущей вершины в худшем случае $\O(\log{n})$.
+      Операция \texttt{decrease\_priority(key, new\_priority)} соответствует тому, что элемент будет всплывать как в обычной куче. На лекции показывали, что такая процедура работает за $\O(\log{n})$, так как глубина текущей вершины в худшем случае $\Theta(\log{n})$.
       
     \end{solution}
 
